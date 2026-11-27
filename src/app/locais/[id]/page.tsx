@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin, Route } from "lucide-react";
@@ -31,6 +32,15 @@ export default async function LocationPage({ params, searchParams }: Props) {
       <h1>{location.name}</h1>
       <p>{location.description}</p>
     </div>
+    {location.image ? <div className="location-photo-frame">
+      <Image
+        src={location.image}
+        alt={location.imageAlt ?? location.name}
+        fill
+        sizes="(max-width: 46rem) 100vw, 46rem"
+        className="location-photo"
+      />
+    </div> : null}
     <section className="detail-section" aria-labelledby="location-title">
       <h2 id="location-title"><MapPin size={20} aria-hidden="true" /> Localização</h2>
       {address ? <p>{address}</p> : null}
